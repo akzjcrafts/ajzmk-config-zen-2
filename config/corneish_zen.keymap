@@ -1,12 +1,13 @@
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
-  
+#include <dt-bindings/zmk/keys.h>
+
 / {
-  chosen {
-    zmk,matrix_transform = &default_transform;
-    //zmk,matrix_transform = &five_column_transform;
-  };
+    chosen {
+        zmk,matrix_transform = &default_transform;
+
+        //zmk,matrix_transform = &five_column_transform;
+    };
 };
 
 / {
@@ -19,24 +20,25 @@
             flavor = "tap-preferred";
             quick-tap-ms = <125>;
             global-quick-tap;
-            bindings = <&kp>, <&kp>; 
+            bindings = <&kp>, <&kp>;
         };
     };
-    
+
     combos {
         compatible = "zmk,combos";
+
         combo_capslock {
             timeout-ms = <50>;
             key-positions = <16 37>;
             bindings = <&kp CAPS>;
         };
-            
+
         combo_q {
             timeout-ms = <50>;
             key-positions = <14 37>;
             bindings = <&kp Q>;
         };
-        
+
         combo_j {
             timeout-ms = <50>;
             key-positions = <14 16>;
@@ -44,51 +46,58 @@
         };
     };
 
-        keymap {
-                compatible = "zmk,keymap";
+    keymap {
+        compatible = "zmk,keymap";
 
-                default_layer {
-                        label = "BASE";
-// -----------------------------------------------------------------------------------------
-// |  layer1 |  Q N1  |  W N2 |  E N3  |  R N4  |  T N5  |      |  Y N6  |  U N7 |  I N8  |  O N9  |  P N0  | LC(RA(DEL)) |
-// | TAB ENTER |  A ,  |  S -  |  D  UP ARROW |  F  |  G LCTRL  |       |  H  |  J   |  K  |  L  |  ;  |  enter '   |
-// | SHFT |  Z =  |  X LEFT ARROW  |  C DOWN ARROW  |  V RIGHT ARROW  |  B DEL  |       |  N  |  M L Bracket   |  , R Bracket  |  .  |  /  | RSHFT |
-//                    | copy paste | backspace | SPC |      | SPC | \ | layer2 |
-                        bindings = <
-   &to 1 &hm N1 Q &hm N2 W &hm N3 E &hm N4 R &hm N5 T     &hm N6 Y &hm N7 U &hm N8 I &hm N9 O &hm N0 P &kp LC(RA(DEL))
-   &hm TAB ENTER &hm COMMA A &hm MINUS S &hm UP_ARROW D &kp F &hm LCTRL G    &kp H &kp J &kp K &kp L &kp SEMI &hm SQT ENTER
-   &kp LSHFT &mt EQUAL Z &hm LEFT_ARROW X &hm DOWN_ARROW C &hm RIGHT_ARROW V &hm DEL B       &kp N &hm LBKT M &hm RBKT COMMA &kp DOT &kp FSLH &kp RSHFT
-                  &hm LC(V) LC(C) &kp BACKSPACE &kp SPACE      &kp SPC &kp BSLH &to 2
-                        >;
-                };
-                lower_layer {
-                        label = "NUM";
-// -----------------------------------------------------------------------------------------
-// |  layer0 |  N  |  N7  |  N8  |  N9  |  -  |         |  !  |  `  |  trans  |  trans  |  trans  | trans |
-// | trans| , | N4 | N5 UP ARROW | N6 | / |        | = | trans |  trans | trans |   trans  |   trans   |
-// | trans | . :  |  N1 LT ARROW  | N2 DOWN ARROW |  N3 RT ARROW  | BACKSPACE |         |  LBKT   |   RBKT  |   trans  |  trans |   trans  |   trans   |
-//                    | trans | N0 | trans |      | trans | trans | trans |
-                        bindings = <
-   &to 0 &kp N &kp N7 &kp N8 &kp N9 &kp MINUS      &kp EXCL &kp GRAVE &trans &trans &trans &trans
-   &trans &kp COMMA &kp N4 &hm UP_ARROW N5 &kp N6 &kp FSLH      &kp EQUAL &trans &trans &trans &trans &trans
-   &trans &hm COLON DOT &hm LEFT_ARROW N1 &hm DOWN_ARROW N2 &hm RIGHT_ARROW N3 &kp BACKSPACE         &kp LBKT &kp RBKT &trans &trans &trans &trans 
-                  &trans &kp N0 &trans      &trans &trans &trans
-                        >;
-                };
+        default_layer {
+            label = "BASE";
 
-                raise_layer {
-                        label = "BT FN";
-// -----------------------------------------------------------------------------------------
-// |  &bt BT_CLR |  &bt BT_SEL 0  |  &bt BT_SEL 1  |  &bt BT_SEL 2  |  &bt BT_SEL 3  |  &bt BT_SEL 4  |        |  trans  |  F9  |  F10  |  F11  |  F12  | trans |
-// | trans |  trans   |  trans   |  trans   |   trans  |  trans   |      |  trans  |  F5  |  F6  |  F7  |  F8  |  trans   |
-// | trans |  trans   |  trans   |  trans  |  trans   |  trans   |       |  trans  |  F1  |  F2  |  F3  | F4 |  trans  |
-//                    | trans |  trans   | trans |      | trans |  trans   | layer0 |
-                        bindings = <
-   &bt BT_CLR  &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4      &trans &kp F9  &kp F10 &kp F11 &kp F12 &trans
-   &trans &trans &trans &trans &trans &trans      &trans &kp F5 &kp F6 &kp F7 &kp F8 &trans
-   &trans &trans &trans &trans &trans &trans      &trans &kp F1 &kp F2 &kp F3 &kp F4 &trans
-                    	     &trans &trans &trans       &trans &trans &to 0
-                        >;
-                };
+            // -----------------------------------------------------------------------------------------
+            // |  layer1 |  Q N1  |  W N2 |  E N3  |  R N4  |  T N5  |      |  Y N6  |  U N7 |  I N8  |  O N9  |  P N0  | LC(RA(DEL)) |
+            // | TAB ENTER |  A ,  |  S -  |  D  UP ARROW |  F  |  G LCTRL  |       |  H  |  J   |  K  |  L  |  ;  |  enter '   |
+            // | SHFT |  Z =  |  X LEFT ARROW  |  C DOWN ARROW  |  V RIGHT ARROW  |  B DEL  |       |  N  |  M L Bracket   |  , R Bracket  |  .  |  /  | RSHFT |
+            //                    | copy paste | backspace | SPC |      | SPC | \ | layer2 |
+
+            bindings = <
+&to 1          &hm N1 Q     &hm N2 W          &hm N3 E          &hm N4 R           &hm N5 T       &hm N6 Y   &hm N7 U    &hm N8 I        &hm N9 O  &hm N0 P  &kp LC(RA(DEL))
+&hm TAB ENTER  &hm COMMA A  &hm MINUS S       &hm UP_ARROW D    &kp F              &hm LCTRL G    &kp H      &kp J       &kp K           &kp L     &kp SEMI  &hm SQT ENTER
+&kp LSHFT      &mt EQUAL Z  &hm LEFT_ARROW X  &hm DOWN_ARROW C  &hm RIGHT_ARROW V  &hm DEL B      &kp N      &hm LBKT M  &hm RBKT COMMA  &kp DOT   &kp FSLH  &kp RSHFT
+                                              &hm LC(V) LC(C)   &kp BACKSPACE      &kp SPACE      &kp SPACE  &kp BSLH    &to 2
+            >;
         };
+
+        lower_layer {
+            label = "NUM";
+
+            // -----------------------------------------------------------------------------------------
+            // |  layer0 |  N  |  N7  |  N8  |  N9  |  -  |         |  !  |  `  |  trans  |  trans  |  trans  | trans |
+            // | trans| , | N4 | N5 UP ARROW | N6 | / |        | = | trans |  trans | trans |   trans  |   trans   |
+            // | trans | . :  |  N1 LT ARROW  | N2 DOWN ARROW |  N3 RT ARROW  | BACKSPACE |         |  LBKT   |   RBKT  |   trans  |  trans |   trans  |   trans   |
+            //                    | trans | N0 | trans |      | trans | trans | trans |
+
+            bindings = <
+&to 0   &kp N          &kp N7             &kp N8             &kp N9              &kp MINUS        &kp EXCL   &kp GRAVE  &trans  &trans  &trans  &trans
+&trans  &kp COMMA      &kp N4             &hm UP_ARROW N5    &kp N6              &kp FSLH         &kp EQUAL  &trans     &trans  &trans  &trans  &trans
+&kp J   &hm COLON DOT  &hm LEFT_ARROW N1  &hm DOWN_ARROW N2  &hm RIGHT_ARROW N3  &kp BACKSPACE    &kp LBKT   &kp RBKT   &trans  &trans  &trans  &trans
+                                          &trans             &kp N0              &trans           &trans     &trans     &trans
+            >;
+        };
+
+        raise_layer {
+            label = "BT FN";
+
+            // -----------------------------------------------------------------------------------------
+            // |  &bt BT_CLR |  &bt BT_SEL 0  |  &bt BT_SEL 1  |  &bt BT_SEL 2  |  &bt BT_SEL 3  |  &bt BT_SEL 4  |        |  trans  |  F9  |  F10  |  F11  |  F12  | trans |
+            // | trans |  trans   |  trans   |  trans   |   trans  |  trans   |      |  trans  |  F5  |  F6  |  F7  |  F8  |  trans   |
+            // | trans |  trans   |  trans   |  trans  |  trans   |  trans   |       |  trans  |  F1  |  F2  |  F3  | F4 |  trans  |
+            //                    | trans |  trans   | trans |      | trans |  trans   | layer0 |
+
+            bindings = <
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans  &kp F9  &kp F10  &kp F11  &kp F12  &trans
+&trans      &trans        &trans        &trans        &trans        &trans          &trans  &kp F5  &kp F6   &kp F7   &kp F8   &trans
+&trans      &trans        &trans        &trans        &trans        &trans          &trans  &kp F1  &kp F2   &kp F3   &kp F4   &trans
+                                        &trans        &trans        &trans          &trans  &trans  &to 0
+            >;
+        };
+    };
 };
