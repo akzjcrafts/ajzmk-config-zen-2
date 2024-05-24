@@ -44,6 +44,11 @@
             key-positions = <14 16>;
             bindings = <&kp J>;
         };
+
+        combo_n {
+            bindings = <&kp N>;
+            key-positions = <16 15>;
+        };
     };
 
     keymap {
@@ -76,9 +81,9 @@
             //                    | trans | N0 | trans |      | trans | trans | trans |
 
             bindings = <
-&to 0   &kp N          &kp N7             &kp N8             &kp N9              &kp MINUS        &kp EXCL   &kp GRAVE  &trans  &trans  &trans  &trans
+&to 0   &trans         &kp N7             &kp N8             &kp N9              &kp MINUS        &kp EXCL   &kp GRAVE  &trans  &trans  &trans  &trans
 &trans  &kp COMMA      &kp N4             &hm UP_ARROW N5    &kp N6              &kp FSLH         &kp EQUAL  &trans     &trans  &trans  &trans  &trans
-&kp J   &hm COLON DOT  &hm LEFT_ARROW N1  &hm DOWN_ARROW N2  &hm RIGHT_ARROW N3  &kp BACKSPACE    &kp LBKT   &kp RBKT   &trans  &trans  &trans  &trans
+&trans  &hm COLON DOT  &hm LEFT_ARROW N1  &hm DOWN_ARROW N2  &hm RIGHT_ARROW N3  &kp BACKSPACE    &kp LBKT   &kp RBKT   &trans  &trans  &trans  &trans
                                           &trans             &kp N0              &trans           &trans     &trans     &trans
             >;
         };
